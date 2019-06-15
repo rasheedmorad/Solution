@@ -9,6 +9,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+/*Test1 open the metric conversions site and find the converted values 
+ */
 public class Test1 {
 
 	protected WebDriver driver;
@@ -40,7 +42,7 @@ public class Test1 {
 
 	}
 
-	// open the chrome driver and navigate to metric conversion
+	// General function that receive site and open it by chrome driver
 	public boolean openSiteByChromDriver(String site) {
 		try {
 			System.setProperty("webdriver.chrome.driver", "C:\\WebDev\\chromedriver.exe");
@@ -59,7 +61,7 @@ public class Test1 {
 		return true;
 	}
 
-	// this function convert Values
+	// General Function that convert Values
 	public String convert_From_To(String from, String to, String temp) {
 		String result = null;
 		driver.findElement(By.cssSelector("input[id=queryFrom]")).sendKeys(from);// insert the first type

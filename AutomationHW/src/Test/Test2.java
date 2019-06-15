@@ -12,12 +12,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+/* In this class I wrote the api test and I compared the results of weather.com and api if it < 10%
+  Test2 extends Test1 because I opened the site of weather , so I used the function from Test1 
+*/
 public class Test2 extends Test1 {
 
 	String weather;
 	StringBuilder content;
-
-
 
 	// api test that receive the weather forecast at zip code: 20852 in USA
 	@Test
@@ -48,14 +49,13 @@ public class Test2 extends Test1 {
 			}
 
 			System.out.println(content.toString());
-			weather=wetherTestGui("20852");
-			
-			
-			
+			weather = wetherTestGui("20852");
+
 			String deg = content.substring(content.indexOf("day"), content.indexOf("min"));
-			deg=deg.substring(deg.indexOf(":"),deg.indexOf(",")).split(":")[1];
-			Assert.assertTrue(Float.parseFloat(weather.split("°")[0]) / Float.parseFloat(deg) < 0.10,"Validating that the results in range 10%");
-			
+			deg = deg.substring(deg.indexOf(":"), deg.indexOf(",")).split(":")[1];
+			Assert.assertTrue(Float.parseFloat(weather.split("°")[0]) / Float.parseFloat(deg) < 0.10,
+					"Validating that the results in range 10%");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,7 +66,7 @@ public class Test2 extends Test1 {
 	}
 
 //method that give the weather from weather.com for zip code 20852
-	public String  wetherTestGui(String zipCode) {
+	public String wetherTestGui(String zipCode) {
 		// open weather.com
 		Assert.assertTrue(openSiteByChromDriver("https://www.weather.com"));
 		return getWeatherForecast(zipCode);
